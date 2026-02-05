@@ -1,6 +1,7 @@
 package com.example.be_likelion_kwu_homepage.project.controller;
 
 import com.example.be_likelion_kwu_homepage.project.dto.request.CreateRequest;
+import com.example.be_likelion_kwu_homepage.project.dto.response.CreateResponse;
 import com.example.be_likelion_kwu_homepage.project.service.ProjectService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +21,9 @@ public class ProjectController {
 
     // 프로젝트 아카이브 생성
     @PostMapping
-    public ResponseEntity<Void> createProject(@Valid @RequestBody CreateRequest req) { // DTO에 정의된 유효성 검사 규칙을 실행
-        projectService.create(req);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<CreateResponse> createProject(@Valid @RequestBody CreateRequest req) { // DTO에 정의된 유효성 검사 규칙을 실행
+        CreateResponse res = projectService.create(req);
+        return ResponseEntity.status(HttpStatus.CREATED).body(res);
     }
 
 }
