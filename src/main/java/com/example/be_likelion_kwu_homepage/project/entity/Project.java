@@ -13,7 +13,7 @@ public class Project {
 
     @Id // 기본키
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long projectId; // 프로젝트 ID
+    private Long projectid; // 프로젝트 ID
 
     @Column(nullable = false, length = 100) // null 불가, 길이 100자 제한
     private String title; // 프로젝트 제목
@@ -21,26 +21,36 @@ public class Project {
     @Column(nullable = false, length = 100)
     private String subTitle; // 프로젝트 부제목
 
-    @Lob // DB 종속성을 고려해서 사용 -> content를 TEXT 형식으로 하려고 사용
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT") // 텍스트 형식으로 컬럼 정의
     private String content; // 프로젝트 내용
 
     @Column(length = 500)
     private String imageUrl; // 프로젝트 썸네일 url
 
-    @Column
-    private String category; // 프로젝트 분류
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ProjectCategory category; // 프로젝트 분류
 
     @Column
-    private Long generation; // 멋사 기수
+    private Integer generation; // 멋사 기수
 
     // 엔티티 생성자
-    public Project(String title, String subTitle, String content, String imageUrl, String category, Long generation) {
+    protected Project(String title, String subTitle, String content, String imageUrl, ProjectCategory category, Integer generation) {
         this.title = title;
         this.subTitle = subTitle;
         this.content = content;
         this.imageUrl = imageUrl;
         this.category = category;
         this.generation = generation;
+    }
+
+    // 생성자를 통제하기 위한 정적 팩토리 메서드
+    public static Project create(String title, String subTitle, String content, String imageUrl, ProjectCategory category, Integer generation) {
+        return new Project(title, subTitle, content, imageUrl, category, generation);
+    }
+
+    // 프로젝트 분류 Enum 클래스로 별도 관리
+    public enum ProjectCategory {
+        WEB, APP
     }
 }
