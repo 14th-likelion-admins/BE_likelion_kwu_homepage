@@ -1,7 +1,7 @@
 package com.example.be_likelion_kwu_homepage.project.dto.request;
 
 
-import com.example.be_likelion_kwu_homepage.domain.ProjectCategory;
+import com.example.be_likelion_kwu_homepage.project.domain.ProjectCategory;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

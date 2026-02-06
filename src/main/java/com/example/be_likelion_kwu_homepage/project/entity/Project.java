@@ -1,6 +1,6 @@
 package com.example.be_likelion_kwu_homepage.project.entity;
 
-import com.example.be_likelion_kwu_homepage.domain.ProjectCategory;
+import com.example.be_likelion_kwu_homepage.project.domain.ProjectCategory;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
