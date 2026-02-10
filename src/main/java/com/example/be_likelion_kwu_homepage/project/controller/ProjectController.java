@@ -27,7 +27,9 @@ public class ProjectController {
 
     // 프로젝트 아카이브 전체조회
     @GetMapping
-    public List<ListResponse> getAllProject() {
-        return projectService.getAllProject();
+    public ResponseEntity<List<ListResponse>> getAllProjects() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(projectService.getAllProjects());
     }
 }
