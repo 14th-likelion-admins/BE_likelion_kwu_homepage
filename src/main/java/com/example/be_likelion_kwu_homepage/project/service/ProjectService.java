@@ -33,15 +33,10 @@ public class ProjectService {
     }
 
     // 프로젝트 아카이브 전체조회 로직
-    public List<ListResponse> getAllProject() {
+    public List<ListResponse> getAllProjects() {
         return projectRepository.findAll()
                 .stream()
-                .map(project -> new ListResponse(
-                        project.getTitle(),
-                        project.getSubTitle(),
-                        project.getImageUrl(),
-                        project.getId()
-                ))
+                .map(ListResponse::from)
                 .toList();
     }
 
