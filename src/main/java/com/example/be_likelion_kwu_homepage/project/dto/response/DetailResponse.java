@@ -9,7 +9,13 @@ public record DetailResponse(
         String content,
         String imageUrl
 ) {
-    public DetailResponse(Project project) {
-        this(project.getId(), project.getTitle(), project.getSubTitle(), project.getContent(), project.getImageUrl());
+    public static DetailResponse from(Project project) {
+        return new DetailResponse(
+                project.getId(),
+                project.getTitle(),
+                project.getSubTitle(),
+                project.getContent(),
+                project.getImageUrl()
+        );
     }
 }
