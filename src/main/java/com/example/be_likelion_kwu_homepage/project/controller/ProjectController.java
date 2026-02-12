@@ -1,7 +1,9 @@
 package com.example.be_likelion_kwu_homepage.project.controller;
 
 import com.example.be_likelion_kwu_homepage.project.dto.request.CreateRequest;
+import com.example.be_likelion_kwu_homepage.project.dto.response.DetailResponse;
 import com.example.be_likelion_kwu_homepage.project.dto.response.ListResponse;
+import com.example.be_likelion_kwu_homepage.project.entity.Project;
 import com.example.be_likelion_kwu_homepage.project.service.ProjectService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,5 +33,13 @@ public class ProjectController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(projectService.getAllProjects());
+    }
+
+    // 프로젝트 아카이브 상세조회
+    @GetMapping("/{id}")
+    public ResponseEntity<DetailResponse> getOneProject(@PathVariable Long id) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(projectService.getOneProject(id));
     }
 }
