@@ -1,15 +1,15 @@
 package com.example.be_likelion_kwu_homepage.project.controller;
 
 import com.example.be_likelion_kwu_homepage.project.dto.request.CreateRequest;
+import com.example.be_likelion_kwu_homepage.project.dto.response.ListResponse;
 import com.example.be_likelion_kwu_homepage.project.service.ProjectService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor // final 필드(ProjectService)를 생성자로 자동 주입
@@ -25,4 +25,11 @@ public class ProjectController {
         return ResponseEntity.status(HttpStatus.CREATED).body(id);
     }
 
+    // 프로젝트 아카이브 전체조회
+    @GetMapping
+    public ResponseEntity<List<ListResponse>> getAllProjects() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(projectService.getAllProjects());
+    }
 }
