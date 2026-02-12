@@ -4,6 +4,7 @@ import com.example.be_likelion_kwu_homepage.project.dto.request.CreateRequest;
 import com.example.be_likelion_kwu_homepage.project.dto.response.DetailResponse;
 import com.example.be_likelion_kwu_homepage.project.dto.response.ListResponse;
 import com.example.be_likelion_kwu_homepage.project.entity.Project;
+import com.example.be_likelion_kwu_homepage.project.global.exception.InvalidProjectIdException;
 import com.example.be_likelion_kwu_homepage.project.repository.ProjectRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -42,10 +43,12 @@ public class ProjectService {
     }
 
     // 프로젝트 아카이브 상세조회 로직
-    public DetailResponse getOneProject(Long id){
+    public DetailResponse getOneProject(Long id) {
+
         Project project = projectRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("프로젝트가 존재하지 않습니다. id=" + id));
-        return new DetailResponse(project);
+                .orElseThrow(InvalidProjectIdException::new);
+
+        return DetailResponse.from(project);
     }
 
 }
