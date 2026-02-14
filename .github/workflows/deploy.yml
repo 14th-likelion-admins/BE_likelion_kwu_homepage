@@ -25,8 +25,14 @@ jobs:
 
       - name: Build with Gradle
         run: |
+          set -euxo pipefail
+          pwd
+          ls -al
+          ls -al gradlew
+          ls -al build.gradle* || true
           ./gradlew --version
           ./gradlew clean bootJar -x test --stacktrace --info
+
 
       - name: Inspect outputs
         run: |
