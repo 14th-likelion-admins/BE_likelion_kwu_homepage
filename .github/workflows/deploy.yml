@@ -26,6 +26,16 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew bootJar -x test
 
+      - name: Inspect outputs
+        run: |
+          echo "=== jars (all) ==="
+          find . -type f -name "*.jar" -print
+          echo "=== wars (all) ==="
+          find . -type f -name "*.war" -print
+          echo "=== build/libs dirs ==="
+          find . -type d -path "*/build/libs" -print
+
+
       - name: Upload build artifact
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: actions/upload-artifact@v4
