@@ -63,6 +63,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: app-jar
+          
+      - name: Inspect downloaded artifact
+        run: |
+          pwd
+          ls -al
+          echo "=== find jars ==="
+          find . -maxdepth 5 -type f -name "*.jar" -print
+
 
       - name: Deploy to EC2
         uses: appleboy/scp-action@master
