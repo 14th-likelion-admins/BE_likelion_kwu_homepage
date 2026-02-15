@@ -78,7 +78,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "*.jar"
+          source: "build/libs/*.jar"
           target: "/home/${{ secrets.EC2_USERNAME }}/app"
 
       - name: Execute deployment script on EC2
