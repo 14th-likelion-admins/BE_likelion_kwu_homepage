@@ -1,8 +1,10 @@
 package com.example.be_likelion_kwu_homepage.project.service;
 
 import com.example.be_likelion_kwu_homepage.project.dto.request.CreateRequest;
+import com.example.be_likelion_kwu_homepage.project.dto.request.UpdateRequest;
 import com.example.be_likelion_kwu_homepage.project.dto.response.DetailResponse;
 import com.example.be_likelion_kwu_homepage.project.dto.response.ListResponse;
+import com.example.be_likelion_kwu_homepage.project.dto.response.UpdateResponse;
 import com.example.be_likelion_kwu_homepage.project.entity.Project;
 import com.example.be_likelion_kwu_homepage.project.global.exception.InvalidProjectIdException;
 import com.example.be_likelion_kwu_homepage.project.repository.ProjectRepository;
@@ -49,6 +51,25 @@ public class ProjectService {
                 .orElseThrow(InvalidProjectIdException::new);
 
         return DetailResponse.from(project);
+    }
+
+    // 프로젝트 아카이브 수정 로직
+    @Transactional
+    public UpdateResponse updateProject(Long id, UpdateRequest req) {
+
+        Project project = projectRepository.findById(id)
+                .orElseThrow(InvalidProjectIdException::new);
+
+        project.update(
+                req.title(),
+                req.subTitle(),
+                req.content(),
+                req.imageUrl(),
+                req.category(),
+                req.generation()
+        );
+
+        return UpdateResponse.from(project);
     }
 
 }
