@@ -50,4 +50,19 @@ public class Project {
         return new Project(title, subTitle, content, imageUrl, category, generation);
     }
 
+    // 수정 메서드
+    public void update(String title,
+                       String subTitle,
+                       String content,
+                       String imageUrl,
+                       ProjectCategory category,
+                       Integer generation) {
+
+        this.title = title;
+        this.subTitle = subTitle;
+        this.content = content;
+        this.imageUrl = imageUrl;
+        this.category = category;
+        this.generation = generation;
+    }
 }
