@@ -72,4 +72,13 @@ public class ProjectService {
         return UpdateProjectResponse.from(project);
     }
 
+    // 프로젝트 아카이브 삭제 로직
+    @Transactional
+    public void deleteProject(Long id) {
+        Project project = projectRepository.findById(id)
+                .orElseThrow(InvalidProjectIdException::new);
+
+        projectRepository.delete(project);
+
+    }
 }
