@@ -64,4 +64,14 @@ public class ProjectController {
                 .body(ApiResponse.success(ResponseCode.OK, data));
     }
 
+    // 프로젝트 아카이브 삭제
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<Void>> deleteProject(@PathVariable Long id) {
+        projectService.deleteProject(id);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(ApiResponse.success(ResponseCode.OK, null));
+    }
+
 }
