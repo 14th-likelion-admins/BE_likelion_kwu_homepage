@@ -1,8 +1,10 @@
 package com.example.be_likelion_kwu_homepage.project.controller;
 
 import com.example.be_likelion_kwu_homepage.project.dto.request.CreateRequest;
+import com.example.be_likelion_kwu_homepage.project.dto.request.UpdateProjectRequest;
 import com.example.be_likelion_kwu_homepage.project.dto.response.DetailResponse;
 import com.example.be_likelion_kwu_homepage.project.dto.response.ListResponse;
+import com.example.be_likelion_kwu_homepage.project.dto.response.UpdateProjectResponse;
 import com.example.be_likelion_kwu_homepage.project.global.dto.ApiResponse;
 import com.example.be_likelion_kwu_homepage.project.global.exception.ResponseCode;
 import com.example.be_likelion_kwu_homepage.project.service.ProjectService;
@@ -51,4 +53,15 @@ public class ProjectController {
                 .status(HttpStatus.OK)
                 .body(ApiResponse.success(ResponseCode.OK, data));
     }
+
+    // 프로젝트 아카이브 수정
+    @PatchMapping("/{id}")
+    public ResponseEntity<ApiResponse<UpdateProjectResponse>> updateProject(@PathVariable Long id, @Valid @RequestBody UpdateProjectRequest req) {
+        UpdateProjectResponse data = projectService.updateProject(id, req);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(ApiResponse.success(ResponseCode.OK, data));
+    }
+
 }
