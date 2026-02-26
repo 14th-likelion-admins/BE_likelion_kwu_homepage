@@ -77,6 +77,19 @@ jobs:
           echo "=== find jars ==="
           find . -maxdepth 5 -type f -name "*.jar" -print
 
+      - name: Debug what will be packed
+        run: |
+          echo "PWD=$(pwd)"
+          echo "=== list ==="
+          ls -al
+          echo "=== jars ==="
+          find . -type f -name "*.jar" -print
+          echo "=== size (top 30) ==="
+          du -ah . | sort -hr | head -n 30
+          echo "=== does build/libs exist? ==="
+          ls -al build || true
+          ls -al build/libs || true
+
 
       - name: Deploy to EC2
         uses: appleboy/scp-action@master
