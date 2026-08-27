@@ -23,5 +23,5 @@ public record CreateRequest(
         ProjectCategory category,
 
         @NotNull
-        Integer generation
+        String generation
 ){}

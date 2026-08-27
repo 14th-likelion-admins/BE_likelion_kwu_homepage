@@ -10,7 +10,7 @@ public record UpdateProjectResponse(
         String content,
         String imageUrl,
         ProjectCategory category,
-        Integer generation
+        String generation
 ) {
     public static UpdateProjectResponse from(Project project) {
         return new UpdateProjectResponse(

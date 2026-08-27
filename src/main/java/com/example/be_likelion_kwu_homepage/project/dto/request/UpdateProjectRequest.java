@@ -22,6 +22,6 @@ public record UpdateProjectRequest(
         ProjectCategory category,
 
         @NotNull
-        Integer generation
+        String generation
 ) {
 }
